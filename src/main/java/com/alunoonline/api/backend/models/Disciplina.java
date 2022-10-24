@@ -18,8 +18,9 @@ public class Disciplina implements Serializable {
 
     private String nome;
 
-    //trazendo duas chaves externas FK
+    //trazendo duas chaves externas FK /vamos ligar uma tabela com outra --> ManyToOne> muitas disciplinas para um unico professor
     @ManyToOne
+    //JoinColumn: Aqui que fazemos a ligação de professor com disciplina
     @JoinColumn(name="professor_id")
     private Professor professor;
 }

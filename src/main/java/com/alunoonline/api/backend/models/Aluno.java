@@ -9,21 +9,23 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.io.Serializable;
+//Todos os import acima vieram de forma automatica colocando os @ abaixo, o intellij já cria.---------------------------
 
-//Todos os import acima vieram de forma automatica colocando os @ abaixo, o intellij já cria.
-//Para não precisar criar os get e set, é só colocar na criação do projeto no spring o "Lombok", mas ele não cria construtor
+//Para não precisar criar os get e set manualmente, é só colocar na criação do projeto no spring o "Lombok"
+//Trás os GET e SET, é um import diretamente do Lombok------------------------------------------------------------------
 @Data
-//Criando o construtor da classe, tudo vindo do Lombok
+//Cria o construtor da classe, é um import diretamente do Lombok--------------------------------------------------------
 @NoArgsConstructor
 @AllArgsConstructor
-//para o spring saber que essa classe que será salva em uma tabela do banco de dados (BD) se usa o @Entity
+//Designa o objeto como uma tabela do BD--------------------------------------------------------------------------------
 @Entity
-//para se comunicar com o BD (h2 nesse caso) se coloca o implements Serializable, assim ps dados vão ser "convertidos" para a linguagem que o BD entende
+//para se comunicar com o BD se coloca o implements Serializable, assim os dados vão ser "convertidos" para a linguagem que o BD entende
 public class Aluno implements Serializable {
-    //Para ter a chave primaria colocar o @Id do BD
+    //Chave primaria será o ID
     @Id
-    //Com o Generated o ID do objeto será gerado, sempre um novo, evitando repetir. e mostrara para o BD qual o ID
+    //Generated o ID do objeto será gerado, sempre um novo, evitando se repetir.
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //Atributos
     private Long id;
 
     private String nome;

@@ -8,23 +8,25 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-//Mostrando abaixo com @Service que essa classe é um service ao spring
+//Mostrando ao spring que essa classe é um service
 @Service
 public class AlunoService {
-    //injetando_todo o repository no Service
+    //Injeta a dependencia do repository
     @Autowired
     AlunoRepository repository;
 
+    //create vai retornar o objeto quando for chamado pelo controle
     public Aluno create (Aluno aluno){
 
         return repository.save(aluno);
     }
 
     public List<Aluno> findAll(){
-        //chama o repository que coloquei
+        //chama o repository que foi colocado, vai me retornar todos os alunos
         return repository.findAll();
     }
 
+    //findById vai retornar o aluno especifico, a depender do ID
     public Optional<Aluno> findById(Long id) {
         return repository.findById(id);
     }
