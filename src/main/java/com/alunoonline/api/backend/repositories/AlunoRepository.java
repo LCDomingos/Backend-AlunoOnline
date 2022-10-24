@@ -7,5 +7,6 @@ import org.springframework.stereotype.Repository;
 //Mostrando para o spring que isso é um  repository
 @Repository
 public interface AlunoRepository extends JpaRepository<Aluno, Long> {
+    //testando
 
 }
