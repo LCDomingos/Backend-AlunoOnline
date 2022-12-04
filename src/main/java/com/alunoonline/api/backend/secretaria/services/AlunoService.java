@@ -1,7 +1,7 @@
-package com.alunoonline.api.backend.services;
+package com.alunoonline.api.backend.secretaria.services;
 
-import com.alunoonline.api.backend.models.Aluno;
-import com.alunoonline.api.backend.repositories.AlunoRepository;
+import com.alunoonline.api.backend.secretaria.models.Aluno;
+import com.alunoonline.api.backend.secretaria.repositories.AlunoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

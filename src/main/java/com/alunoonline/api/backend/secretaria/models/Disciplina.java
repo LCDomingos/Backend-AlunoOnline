@@ -1,4 +1,4 @@
-package com.alunoonline.api.backend.models;
+package com.alunoonline.api.backend.secretaria.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,7 +20,7 @@ public class Disciplina implements Serializable {
 
     //trazendo duas chaves externas FK /vamos ligar uma tabela com outra --> ManyToOne> muitas disciplinas para um unico professor
     @ManyToOne
-    //JoinColumn: Aqui que fazemos a ligação de professor com disciplina
+    //JoinColumn: Aqui que fazemos a ligação de professor com disciplina pois toda disciplina tem um professor
     @JoinColumn(name="professor_id")
     private Professor professor;
 }

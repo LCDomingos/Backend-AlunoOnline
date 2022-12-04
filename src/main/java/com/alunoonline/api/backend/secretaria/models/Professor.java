@@ -1,4 +1,4 @@
-package com.alunoonline.api.backend.models;
+package com.alunoonline.api.backend.secretaria.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

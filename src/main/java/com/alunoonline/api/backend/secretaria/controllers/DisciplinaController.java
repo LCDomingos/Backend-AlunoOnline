@@ -1,7 +1,7 @@
-package com.alunoonline.api.backend.controllers;
+package com.alunoonline.api.backend.secretaria.controllers;
 
-import com.alunoonline.api.backend.models.Disciplina;
-import com.alunoonline.api.backend.services.DisciplinaService;
+import com.alunoonline.api.backend.secretaria.models.Disciplina;
+import com.alunoonline.api.backend.secretaria.services.DisciplinaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
