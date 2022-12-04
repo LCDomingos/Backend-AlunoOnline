@@ -1,9 +1,9 @@
-package com.alunoonline.api.backend.aluno.controllers;
+package com.alunoonline.api.backend.matricula_aluno.controllers;
 
-import com.alunoonline.api.backend.aluno.dtos.HistoricoAlunoDto;
-import com.alunoonline.api.backend.aluno.dtos.MatriculaAlunoNotasOnlyDto;
-import com.alunoonline.api.backend.aluno.models.MatriculaAluno;
-import com.alunoonline.api.backend.aluno.services.MatriculaAlunoService;
+import com.alunoonline.api.backend.matricula_aluno.dtos.HistoricoAlunoDto;
+import com.alunoonline.api.backend.matricula_aluno.dtos.MatriculaAlunoNotasOnlyDto;
+import com.alunoonline.api.backend.matricula_aluno.models.MatriculaAluno;
+import com.alunoonline.api.backend.matricula_aluno.services.MatriculaAlunoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

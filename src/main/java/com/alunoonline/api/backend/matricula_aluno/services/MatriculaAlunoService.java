@@ -1,10 +1,10 @@
-package com.alunoonline.api.backend.aluno.services;
+package com.alunoonline.api.backend.matricula_aluno.services;
 
-import com.alunoonline.api.backend.aluno.dtos.DisciplinasAlunoDto;
-import com.alunoonline.api.backend.aluno.dtos.HistoricoAlunoDto;
-import com.alunoonline.api.backend.aluno.dtos.MatriculaAlunoNotasOnlyDto;
-import com.alunoonline.api.backend.aluno.models.MatriculaAluno;
-import com.alunoonline.api.backend.aluno.repositories.MatriculaAlunoRepository;
+import com.alunoonline.api.backend.matricula_aluno.dtos.DisciplinasAlunoDto;
+import com.alunoonline.api.backend.matricula_aluno.dtos.HistoricoAlunoDto;
+import com.alunoonline.api.backend.matricula_aluno.dtos.MatriculaAlunoNotasOnlyDto;
+import com.alunoonline.api.backend.matricula_aluno.models.MatriculaAluno;
+import com.alunoonline.api.backend.matricula_aluno.repositories.MatriculaAlunoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;

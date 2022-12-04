@@ -1,4 +1,4 @@
-package com.alunoonline.api.backend.aluno.dtos;
+package com.alunoonline.api.backend.matricula_aluno.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
