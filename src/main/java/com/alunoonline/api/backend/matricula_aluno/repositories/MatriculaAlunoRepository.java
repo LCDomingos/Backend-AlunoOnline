@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
+@Repository //informando que é um repository
 public interface MatriculaAlunoRepository extends JpaRepository<MatriculaAluno, Long> {
     public List<MatriculaAluno> findByAlunoId(Long alunoId);
 }

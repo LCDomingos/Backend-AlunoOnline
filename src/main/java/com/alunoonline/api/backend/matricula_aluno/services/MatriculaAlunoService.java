@@ -16,18 +16,22 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-@Service
+@Service //informando que é um service
 public class MatriculaAlunoService {
 
     static final Double gradesAvgToApprove = 7.0;
 
-    @Autowired
+    @Autowired //injeção de dependencia
     MatriculaAlunoRepository repository;
 
+    //metodo create para quando o aluno se matricular já ficar com status MATRICULADO
     public MatriculaAluno create(MatriculaAluno matriculaAluno) {
         matriculaAluno.setStatus("MATRICULADO");
         return repository.save(matriculaAluno);
     }
+    //updateGrades para salvar as notas dos alunos e fazer o patch das notas com o statos aprovado e reprovado
+    //criamos os DTOS para abstrair as mudanças das notas, e assim usamos o metodos DTO que é mais simples para fazer update nas notas
+    //update nas notas não precisamos do objeto geral para isso, por isso usamos o DTO //
 
     public void updateGrades(MatriculaAlunoNotasOnlyDto notasOnlyDto, Long matriculaAlunoId) {
         Optional<MatriculaAluno> matriculaAlunoToUpdate = repository.findById(matriculaAlunoId);

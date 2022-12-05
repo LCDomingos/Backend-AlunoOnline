@@ -9,22 +9,23 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
-@RequestMapping("/matricula-aluno")
+@RestController //informando que é um restController
+@RequestMapping("/matricula-aluno") //a conexão  http virá direto aqui se for /matricula-aluno
 public class MatriculaAlunoController {
 
-    @Autowired
+    @Autowired //injetando o service
     MatriculaAlunoService service;
 
-    @PostMapping
+    @PostMapping //se a requisição http for post virá direto aqui
     @ResponseStatus(HttpStatus.CREATED)
+    //Aqui vamos implementar o metodo de creater já implementado no service
     public ResponseEntity<MatriculaAluno> create(@RequestBody MatriculaAluno matriculaAluno) {
         MatriculaAluno matriculaAlunoCreated = service.create(matriculaAluno);
-
+    //criando o end point para minha matricula do aluno
         return ResponseEntity.status(201).body(matriculaAlunoCreated);
     }
 
-    @PatchMapping("/updateGrades/{id}")
+    @PatchMapping("/updateGrades/{id}") //para atualizar a nota dada pelo professor
     @ResponseStatus(HttpStatus.OK)
     public void patchGrades(@RequestBody MatriculaAlunoNotasOnlyDto notasOnlyDto,
                             @PathVariable Long id) {
