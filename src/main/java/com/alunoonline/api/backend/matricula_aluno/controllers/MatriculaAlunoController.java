@@ -34,7 +34,7 @@ public class MatriculaAlunoController {
 
     @PatchMapping("/updateStatusToBreak/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void patchStatus(@PathVariable Long id) throws Exception {
+    public void patchStatus(@PathVariable Long id) throws Exception { //o pathvariable trará o id do http para dentro do java
         service.updateStatusToBreak(id);
     }
 

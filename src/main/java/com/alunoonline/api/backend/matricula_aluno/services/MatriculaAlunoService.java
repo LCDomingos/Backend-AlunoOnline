@@ -50,7 +50,7 @@ public class MatriculaAlunoService {
 
         if (needUpdate) {
             if (matriculaAlunoToUpdate.get().getNota1() != null && matriculaAlunoToUpdate.get().getNota2() != null) {
-                if (matriculaAlunoToUpdate.get().getNota1() + matriculaAlunoToUpdate.get().getNota2() / 2 >= gradesAvgToApprove) {
+                if (matriculaAlunoToUpdate.get().getNota1() + matriculaAlunoToUpdate.get().getNota2() / 2 >= 7) {
                     matriculaAlunoToUpdate.ifPresent(matriculaAluno -> matriculaAluno.setStatus("APROVADO"));
                 } else {
                     matriculaAlunoToUpdate.ifPresent(matriculaAluno -> matriculaAluno.setStatus("REPROVADO"));
@@ -62,21 +62,24 @@ public class MatriculaAlunoService {
 
     }
 
+    //mudando o status de aprovado para trancado
+    //só pode acontecer se ele estiver como "matriculado" , antes de já ter uma nota media e status como aprovado ou reprovado
+    //não tem logica trancar se ele já estiver reprovado
     public void updateStatusToBreak(Long matriculaAlunoId) throws Exception {
         Optional<MatriculaAluno> matriculaAlunoToUpdate = repository.findById(matriculaAlunoId);
 
-        if (matriculaAlunoToUpdate.isPresent()) {
+        if (matriculaAlunoToUpdate.isPresent()) { //Qualquer status que for diferente de matriculado não irá conseguir trancar
             if (Objects.equals(matriculaAlunoToUpdate.get().getStatus(), "MATRICULADO")) {
                 matriculaAlunoToUpdate.ifPresent(matriculaAluno -> matriculaAluno.setStatus("TRANCADA"));
             } else {
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Só é possível trancar com status MATRICULADO.");
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Só é possível trancar com status MATRICULADO."); //msg apenas p o backend
             }
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Matrícula não encontrada.");
         }
         repository.save(matriculaAlunoToUpdate.get());
     }
-
+    //implementando um metodo que retorne um historico de determinado aluno
     public HistoricoAlunoDto getHistoricoFromAluno(Long alunoId) {
         List<MatriculaAluno> matriculasDoAluno = repository.findByAlunoId(alunoId);
 
@@ -92,19 +95,19 @@ public class MatriculaAlunoService {
 
                 disciplinasAlunoDto.setNomeDisciplina(matricula.getDisciplina().getNome());
                 disciplinasAlunoDto.setProfessorDisciplina(matricula.getDisciplina().getProfessor().getNome());
-                disciplinasAlunoDto.setNota1(matricula.getNota1());
+                disciplinasAlunoDto.setNota1(matricula.getNota1()); //Aqui tenho nota 1 e 2
                 disciplinasAlunoDto.setNota2(matricula.getNota2());
                 if ((matricula.getNota1() != null && matricula.getNota2() != null)) {
-                    disciplinasAlunoDto.setMedia(matricula.getNota1() + matricula.getNota2() / 2);
+                    disciplinasAlunoDto.setMedia(matricula.getNota1() + matricula.getNota2() / 2); //fazendo a media apenas se as duas forem preenchidas
                 } else {
-                    disciplinasAlunoDto.setMedia(null);
+                    disciplinasAlunoDto.setMedia(null); // se não tiver notas a media será null
                 }
                 disciplinasAlunoDto.setStatus(matricula.getStatus());
 
-                disciplinasList.add(disciplinasAlunoDto);
+                disciplinasList.add(disciplinasAlunoDto); // Aqui no final vamos armazenar na lista
             }
 
-            historico.setDisciplinasAlunoList(disciplinasList);
+            historico.setDisciplinasAlunoList(disciplinasList); // disciplinaList pronta
 
             return historico;
         }
