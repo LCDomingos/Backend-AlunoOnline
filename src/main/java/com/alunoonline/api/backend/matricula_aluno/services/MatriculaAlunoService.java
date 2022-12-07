@@ -24,15 +24,12 @@ public class MatriculaAlunoService {
     @Autowired //injeção de dependencia
     MatriculaAlunoRepository repository;
 
-    //metodo create para quando o aluno se matricular já ficar com status MATRICULADO
     public MatriculaAluno create(MatriculaAluno matriculaAluno) {
         matriculaAluno.setStatus("MATRICULADO");
         return repository.save(matriculaAluno);
     }
-    //updateGrades para salvar as notas dos alunos e fazer o patch das notas com o statos aprovado e reprovado
-    //criamos os DTOS para abstrair as mudanças das notas, e assim usamos o metodos DTO que é mais simples para fazer update nas notas
-    //update nas notas não precisamos do objeto geral para isso, por isso usamos o DTO //
 
+    //Regra de negocio
     public void updateGrades(MatriculaAlunoNotasOnlyDto notasOnlyDto, Long matriculaAlunoId) {
         Optional<MatriculaAluno> matriculaAlunoToUpdate = repository.findById(matriculaAlunoId);
 
@@ -62,9 +59,6 @@ public class MatriculaAlunoService {
 
     }
 
-    //mudando o status de aprovado para trancado
-    //só pode acontecer se ele estiver como "matriculado" , antes de já ter uma nota media e status como aprovado ou reprovado
-    //não tem logica trancar se ele já estiver reprovado
     public void updateStatusToBreak(Long matriculaAlunoId) throws Exception {
         Optional<MatriculaAluno> matriculaAlunoToUpdate = repository.findById(matriculaAlunoId);
 

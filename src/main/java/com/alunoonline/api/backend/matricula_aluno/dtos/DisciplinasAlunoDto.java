@@ -2,7 +2,7 @@ package com.alunoonline.api.backend.matricula_aluno.dtos;
 
 import lombok.Data;
 
-@Data //@Data para ter os get e set disponiveis para usar no service
+@Data
 //Essa tabela será a list usada no historico, pois é cada disciplina que será mostrada no historico
 public class DisciplinasAlunoDto {
     private String nomeDisciplina;

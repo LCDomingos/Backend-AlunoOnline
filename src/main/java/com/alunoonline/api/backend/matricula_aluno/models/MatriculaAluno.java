@@ -9,25 +9,20 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Data //para poder usar os gets e set
-@NoArgsConstructor //para acrescentar os construtores, com e sem argumentos
-@AllArgsConstructor
-@Entity
-//com o @Entity o BD já sabe que será uma tabela do BD
-//Essa será a classe que irá prover todas as ações dos alunos
-public class MatriculaAluno implements Serializable { //Aqui implementamos o serializable e os atributos da classe
+@Data //inserção dos gets e set
+@NoArgsConstructor //construtores sem argumentos
+@AllArgsConstructor // construtores sem argumentos
+@Entity //Mostra ao bd que é referente a uma tabela
+public class MatriculaAluno implements Serializable { //Abaixo atributos da classe
 
-    @Id //informando que é o ID da minha tabela
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //gera um ID aleatório
-    //Cada matricula de Aluno tera seu respectivo ID (sua chave primaria)
     private Long id;
-    //Aqui colocamos que cada aluno terá duas notas para poder passar de ano
     private Double nota1;
-
     private Double nota2;
-    //vamos colocar a disciplina ligada a matricula
+
     //Não precisamos de professor pois o professor já está ligado a disciplina
-    @ManyToOne
+    @ManyToOne //Todos para um
     @JoinColumn(name = "aluno_id") //Join para ligar as duas tabelas
     private Aluno aluno;
 

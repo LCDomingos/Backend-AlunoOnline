@@ -10,18 +10,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController //informando que é um restController
-@RequestMapping("/matricula-aluno") //a conexão  http virá direto aqui se for /matricula-aluno
+@RequestMapping("/matricula-aluno") //Requisição http
 public class MatriculaAlunoController {
 
-    @Autowired //injetando o service
+    @Autowired //injetando o dependencia
     MatriculaAlunoService service;
 
-    @PostMapping //se a requisição http for post virá direto aqui
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED) //Aqui vamos implementar o metodo de creater já implementado no service
     public ResponseEntity<MatriculaAluno> create(@RequestBody MatriculaAluno matriculaAluno) {
         MatriculaAluno matriculaAlunoCreated = service.create(matriculaAluno);
-    //criando o end point para minha matricula do aluno
-        return ResponseEntity.status(201).body(matriculaAlunoCreated);
+
+        return ResponseEntity.status(201).body(matriculaAlunoCreated);//criando o end point para minha matricula do aluno
     }
 
     @PatchMapping("/updateGrades/{id}") //para atualizar a nota dada pelo professor
@@ -31,13 +31,13 @@ public class MatriculaAlunoController {
         service.updateGrades(notasOnlyDto, id);
     }
 
-    @PatchMapping("/updateStatusToBreak/{id}")
+    @PatchMapping("/updateStatusToBreak/{id}") //para fazer o trancamento da disciplina
     @ResponseStatus(HttpStatus.OK)
-    public void patchStatus(@PathVariable Long id) throws Exception { //o pathvariable trará o id do http para dentro do java
+    public void patchStatus(@PathVariable Long id) throws Exception {
         service.updateStatusToBreak(id);
     }
 
-    @GetMapping("/studentGrades/{id}")
+    @GetMapping("/studentGrades/{id}") //Historico do aluno
     @ResponseStatus(HttpStatus.OK)
     public HistoricoAlunoDto studentGrades(@PathVariable Long id) {
         return service.getHistoricoFromAluno(id);
