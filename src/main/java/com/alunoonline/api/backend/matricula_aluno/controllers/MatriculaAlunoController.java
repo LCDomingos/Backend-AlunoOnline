@@ -17,8 +17,7 @@ public class MatriculaAlunoController {
     MatriculaAlunoService service;
 
     @PostMapping //se a requisição http for post virá direto aqui
-    @ResponseStatus(HttpStatus.CREATED)
-    //Aqui vamos implementar o metodo de creater já implementado no service
+    @ResponseStatus(HttpStatus.CREATED) //Aqui vamos implementar o metodo de creater já implementado no service
     public ResponseEntity<MatriculaAluno> create(@RequestBody MatriculaAluno matriculaAluno) {
         MatriculaAluno matriculaAlunoCreated = service.create(matriculaAluno);
     //criando o end point para minha matricula do aluno

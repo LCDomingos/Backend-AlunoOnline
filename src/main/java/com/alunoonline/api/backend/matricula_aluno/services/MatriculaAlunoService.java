@@ -50,7 +50,7 @@ public class MatriculaAlunoService {
 
         if (needUpdate) {
             if (matriculaAlunoToUpdate.get().getNota1() != null && matriculaAlunoToUpdate.get().getNota2() != null) {
-                if (matriculaAlunoToUpdate.get().getNota1() + matriculaAlunoToUpdate.get().getNota2() / 2 >= 7) {
+                if ((matriculaAlunoToUpdate.get().getNota1() + matriculaAlunoToUpdate.get().getNota2()) / 2 >= 7) {
                     matriculaAlunoToUpdate.ifPresent(matriculaAluno -> matriculaAluno.setStatus("APROVADO"));
                 } else {
                     matriculaAlunoToUpdate.ifPresent(matriculaAluno -> matriculaAluno.setStatus("REPROVADO"));
@@ -79,6 +79,7 @@ public class MatriculaAlunoService {
         }
         repository.save(matriculaAlunoToUpdate.get());
     }
+
     //implementando um metodo que retorne um historico de determinado aluno
     public HistoricoAlunoDto getHistoricoFromAluno(Long alunoId) {
         List<MatriculaAluno> matriculasDoAluno = repository.findByAlunoId(alunoId);
@@ -98,7 +99,7 @@ public class MatriculaAlunoService {
                 disciplinasAlunoDto.setNota1(matricula.getNota1()); //Aqui tenho nota 1 e 2
                 disciplinasAlunoDto.setNota2(matricula.getNota2());
                 if ((matricula.getNota1() != null && matricula.getNota2() != null)) {
-                    disciplinasAlunoDto.setMedia(matricula.getNota1() + matricula.getNota2() / 2); //fazendo a media apenas se as duas forem preenchidas
+                    disciplinasAlunoDto.setMedia((matricula.getNota1() + matricula.getNota2()) / 2); //fazendo a media apenas se as duas forem preenchidas
                 } else {
                     disciplinasAlunoDto.setMedia(null); // se não tiver notas a media será null
                 }

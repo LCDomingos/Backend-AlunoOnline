@@ -16,7 +16,7 @@ import java.util.Optional;
 //Mostrando para o spring que isso é um  controller
 @RestController
 //mapeamento para que se consiga diferenciar as classes quando se usar o HTTP
-@RequestMapping("/aluno")
+@RequestMapping("/alunos")
 public class AlunoController {
     //Injetando dependencia do aluno service
     @Autowired
